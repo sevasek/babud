@@ -1,0 +1,274 @@
+{
+  "name": "BBX_Main_Daily",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -512,
+        -288
+      ],
+      "id": "370b27b1-ab86-422e-84bc-1f12f5002989",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## Sync Tags",
+        "height": 272,
+        "width": 768
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -48,
+        -368
+      ],
+      "typeVersion": 1,
+      "id": "d7209e7d-5624-4834-99cb-be67e3fce05d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "CTxv4xcqm7laI5zF",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/CTxv4xcqm7laI5zF",
+          "cachedResultName": "BBX_Sub_GetUnsyncedTags"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        64,
+        -288
+      ],
+      "id": "8fdfd992-18d1-45b5-be5f-9554a0f601a2",
+      "name": "Get Updated Tag Transaction ID"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ZqB2HheCOCYdntji",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ZqB2HheCOCYdntji",
+          "cachedResultName": "BBX_Sub_ValidateTags"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        -288
+      ],
+      "id": "1f522c77-dd05-4475-ace9-cff38e02c853",
+      "name": "Validate Tags"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "qF0HLTavXSdbtf7B",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/qF0HLTavXSdbtf7B",
+          "cachedResultName": "BBX_Sub_SyncTags"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        544,
+        -288
+      ],
+      "id": "aef17911-881a-45a4-ba32-a0cb550130eb",
+      "name": "Sync Tags"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "tRf7xqACejfw5j9h",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/tRf7xqACejfw5j9h",
+          "cachedResultName": "BBX_Sub_PingUpBankAPI"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -224,
+        -288
+      ],
+      "id": "f42ede38-b6f0-40b0-bc74-1bb01cee44a9",
+      "name": "Ping API"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "OlZkwiGmeE8sCgqr",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/OlZkwiGmeE8sCgqr",
+          "cachedResultName": "BBX_Sub_AutoTag"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        -608
+      ],
+      "id": "eaedade4-57ac-4446-894b-61cd82eb328d",
+      "name": "Auto Tag"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "mAUxotu9zqyLqdEt",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/mAUxotu9zqyLqdEt",
+          "cachedResultName": "BBX_Sub_MatchInternals"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        64
+      ],
+      "id": "1251a8c7-bfdf-4334-82c5-57124ef6939a",
+      "name": "Match Internal Transfers"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Ping API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Auto Tag",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Match Internal Transfers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Updated Tag Transaction ID": {
+      "main": [
+        [
+          {
+            "node": "Validate Tags",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Tags": {
+      "main": [
+        [
+          {
+            "node": "Sync Tags",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ping API": {
+      "main": [
+        [
+          {
+            "node": "Get Updated Tag Transaction ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "c7a875f7-8ef4-4348-8ece-06b74f7ca06e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "56a546582ceba2a43549bbc9bf7fc86020b83e1b5db93b111b47c1cf4ee5f7c0"
+  },
+  "id": "ggpzryHqJT4XXCB3OqxfV",
+  "tags": []
+}

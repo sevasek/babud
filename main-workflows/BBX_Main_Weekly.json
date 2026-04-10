@@ -1,0 +1,461 @@
+{
+  "name": "BBX_Main_Weekly",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -736,
+        32
+      ],
+      "id": "a2866a3f-2c7b-42bd-96d7-9790f1cf3de7",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Lxq68WoOlLZpxeur",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Lxq68WoOlLZpxeur",
+          "cachedResultName": "BBX_Sub_GetUnsettledTransactions"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        32
+      ],
+      "id": "eb94b17f-13a7-4ede-8965-7e46d288481c",
+      "name": "Get Unsettled Transactions"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "rosh4dcg7UcW3C6y",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/rosh4dcg7UcW3C6y",
+          "cachedResultName": "BBX_Sub_GetAPITransactionRecord"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        32
+      ],
+      "id": "964d426d-04ec-4b4e-bf39-f4e1c704d3aa",
+      "name": "Get Transactions from Up API"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "FOdkGTqZcqpMpBnP",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/FOdkGTqZcqpMpBnP",
+          "cachedResultName": "BBX_Sub_FilterUnsettled"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        32
+      ],
+      "id": "33d0920b-cb88-4f92-8799-59456947f78e",
+      "name": "Filter Unsettled"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "OvlNRrdO0645uyhT",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/OvlNRrdO0645uyhT",
+          "cachedResultName": "BBX_Sub_InsertUpdateFlatIntoPostgres"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        816,
+        32
+      ],
+      "id": "e46ce8f4-ae38-4640-a261-b1e65a2ab7e7",
+      "name": "Insert or Update into Postgres Database"
+    },
+    {
+      "parameters": {
+        "content": "## Update Recently Settled Transactions",
+        "height": 272,
+        "width": 1376
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -272,
+        -48
+      ],
+      "typeVersion": 1,
+      "id": "533e13fe-4c7d-45f1-a385-002ef7615bce",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "tRf7xqACejfw5j9h",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/tRf7xqACejfw5j9h",
+          "cachedResultName": "BBX_Sub_PingUpBankAPI"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -544,
+        32
+      ],
+      "id": "4b9345c9-4cea-4c09-99a2-c23b023ee197",
+      "name": "Ping API"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "oW3rueT19KZq28dv",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/oW3rueT19KZq28dv",
+          "cachedResultName": "BBX_Sub_UpdateLastPoll"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        368
+      ],
+      "id": "2b32b389-067a-4111-9b2f-d6b8394c3869",
+      "name": "Update Last Poll Record"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "AEXjM2M37_q9FSiERFTDP",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/AEXjM2M37_q9FSiERFTDP",
+          "cachedResultName": "BBX_Sub_GetNewTransactions"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        368
+      ],
+      "id": "d0cc856a-ff8c-454f-a679-96a261b53827",
+      "name": "Get Transactions from Up API1"
+    },
+    {
+      "parameters": {
+        "content": "## Sync New Transactions",
+        "height": 560,
+        "width": 1008
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -272,
+        288
+      ],
+      "typeVersion": 1,
+      "id": "2263109c-f538-419d-a902-760f396d221a",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "iADXRighd10hWCZgnKfHW",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/iADXRighd10hWCZgnKfHW",
+          "cachedResultName": "BBX_Sub_UpdateEnvelopesBudget"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        -320
+      ],
+      "id": "07fef7f4-f26a-4f2c-ae12-d0f600aafa34",
+      "name": "Update Envelopes & Budget"
+    },
+    {
+      "parameters": {
+        "content": "## Update Recently Changed Budget",
+        "height": 352,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -272,
+        -432
+      ],
+      "typeVersion": 1,
+      "id": "84e8692b-dae3-4fbb-a25e-da992f16490e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "NWzCfpyCoPPaHJFH",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/NWzCfpyCoPPaHJFH",
+          "cachedResultName": "BBX_Sub_UpAPIToFlat"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        32
+      ],
+      "id": "c8745d33-2959-426d-a2ef-4f6ad24e1521",
+      "name": "Convert from Up API to Flat JSON1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Nd7Gk6v6rlAdjEsj",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Nd7Gk6v6rlAdjEsj",
+          "cachedResultName": "BBX_Sub_UpBankToPostgres"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        368
+      ],
+      "id": "cb4fe041-a481-4490-9f9e-1e00d6b8fca5",
+      "name": "Call 'BBX_Sub_UpBankToPostgres'"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Ping API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update Envelopes & Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Unsettled Transactions": {
+      "main": [
+        [
+          {
+            "node": "Get Transactions from Up API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Transactions from Up API": {
+      "main": [
+        [
+          {
+            "node": "Filter Unsettled",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Unsettled": {
+      "main": [
+        [
+          {
+            "node": "Convert from Up API to Flat JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ping API": {
+      "main": [
+        [
+          {
+            "node": "Get Transactions from Up API1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Unsettled Transactions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Transactions from Up API1": {
+      "main": [
+        [
+          {
+            "node": "Call 'BBX_Sub_UpBankToPostgres'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert from Up API to Flat JSON1": {
+      "main": [
+        [
+          {
+            "node": "Insert or Update into Postgres Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'BBX_Sub_UpBankToPostgres'": {
+      "main": [
+        [
+          {
+            "node": "Update Last Poll Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "6c7d34b5-ea41-4899-b548-c4e5db04f1f0",
+  "meta": {
+    "instanceId": "56a546582ceba2a43549bbc9bf7fc86020b83e1b5db93b111b47c1cf4ee5f7c0"
+  },
+  "id": "qOTlz8h6pW37Lx-OXP0ZN",
+  "tags": []
+}
